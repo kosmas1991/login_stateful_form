@@ -21,7 +21,7 @@ class LoginScreenState extends State<LoginScreen>{
         key: formKey,
         child: Column(
           children: [
-            // text fields  and button  here ...
+            // text fields and button  here ...
             emailField(),
             passwordField(),
             Container(padding: EdgeInsets.only(top: 25.0),),
@@ -40,6 +40,9 @@ class LoginScreenState extends State<LoginScreen>{
         }
         return null;
       },
+      onSaved: (newValue) {
+        print(newValue);
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         labelText: 'Email address',
@@ -56,6 +59,9 @@ class LoginScreenState extends State<LoginScreen>{
         }
         return null;
       },
+      onSaved: (newValue) {
+        print(newValue);
+      },
       obscureText: true,
       decoration: InputDecoration(
         labelText: 'Password',
@@ -67,7 +73,9 @@ class LoginScreenState extends State<LoginScreen>{
     return RaisedButton(
       color: Colors.blueAccent,
       onPressed: () {
-        formKey.currentState.validate();
+        if(formKey.currentState.validate()){
+          formKey.currentState.save();
+        }
       },
       child: Text('Submit'),
     );
